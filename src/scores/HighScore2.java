@@ -6,14 +6,35 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * This class list handles HighScores in our game.
  */
-public class HighScore1 {
+public class HighScore2 {
 	
+	/**
+	 * URL where are stored the scores.
+	 */
 	private static final String SCORE_URL = "https://api.thingspeak.com/channels/109317/feeds.csv";
+	
+	/**
+	 * The separator used in the csv file.
+	 */
+	private static final String CSV_SPERATOR = ",";
+	
+	/**
+	 * Index (column) of the player's name in the csv file.
+	 */
+	private static final int INDEX_PLAYER_NAME = 3; 
+	
+	/**
+	 * Index (column) of the player's score in the csv file.
+	 */
+	private static final int INDEX_PLAYER_SCORE = 2;
+	
+	
 	
 	/**
 	 * This URL represents where the highscores can be retrieve from a server. 
@@ -23,7 +44,7 @@ public class HighScore1 {
 	/**
 	 * Constructor for the HighScores handler.
 	 */
-	public HighScore1() {
+	public HighScore2() {
 		try {
 			this.scoresURL = new URL(SCORE_URL);
 		} catch (MalformedURLException e) {
@@ -50,6 +71,23 @@ public class HighScore1 {
 		}
 
 		return scores;
+	}
+	
+	public BestPlayer2[] tenBestScores(List<String> readLines) {
+		List<BestPlayer2> bestPlayers = new ArrayList<>();
+		
+		for (String line : readLines) {
+			// Parsing of the line
+			String[] columns = line.split(CSV_SPERATOR); 
+			int score = Integer.parseInt(columns[INDEX_PLAYER_SCORE]);
+			String name = columns[INDEX_PLAYER_NAME];
+			BestPlayer2 player = new BestPlayer2(name, score);
+			
+			bestPlayers.add(player);
+		}
+		
+		Collections.sort(bestPlayers, Collections.reverseOrder());
+		return bestPlayers.toArray(new BestPlayer2[10]);
 	}
 
 }
