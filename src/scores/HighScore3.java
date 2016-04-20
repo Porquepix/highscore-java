@@ -95,7 +95,7 @@ public class HighScore3 {
 		int score = player.getScore();
 		
 		URL getURL = new URL("https://api.thingspeak.com/update?api_key=3KIYU8HBCBTTFKP2&field1="+score+"&field2="+nom);
-		getURL.openConnection();
+		getURL.openStream();
 
 	}
 

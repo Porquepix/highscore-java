@@ -10,6 +10,7 @@ public class BestPlayer2 implements Comparable<BestPlayer2> {
 	 */
 	private String name;
 	
+
 	/**
 	 * Player's score.
 	 */
@@ -39,5 +40,5 @@ public class BestPlayer2 implements Comparable<BestPlayer2> {
 	public String toString() {
 		return "Username: " + this.name + ", Score: " + this.score;
 	}
-
+	
 }

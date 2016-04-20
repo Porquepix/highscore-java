@@ -46,11 +46,9 @@ public class TestHighScore3 {
 		System.out.println("Username: " + username + ", Score: " + playerScore);
 		
 		//Add if he's in the top 10
-		HighScore3 highScore = new HighScore3();
-		BestPlayer3[] bestPlayers2 = highscore.tenBestScores(highscore.getScores());
 		for (BestPlayer3 player : bestPlayers) {
-			if (player.getScore() < Integer.parseInt(playerScore)) {
-				highScore.sendScore(new BestPlayer3(username, Integer.parseInt(playerScore)));
+			if (player != null && player.getScore() < Integer.parseInt(playerScore)) {
+				highscore.sendScore(new BestPlayer3(username, Integer.parseInt(playerScore)));
 			}
 		}
 		
