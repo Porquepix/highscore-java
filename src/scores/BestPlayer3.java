@@ -41,18 +41,38 @@ public class BestPlayer3 implements Comparable<BestPlayer3> {
 		return "Username: " + this.name + ", Score: " + this.score;
 	}
 
+	/**
+	 * Get the name of the player.
+	 * 
+	 * @return The name of the player.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Set the name of the player.
+	 *  
+	 * @param name The new name of the player.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Get the score of the player.
+	 * 
+	 * @return The score of the player.
+	 */
 	public int getScore() {
 		return score;
 	}
 
+	/**
+	 * Set the score of the player.
+	 * 
+	 * @param score The new score of the player.
+	 */
 	public void setScore(int score) {
 		this.score = score;
 	}

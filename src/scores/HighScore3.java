@@ -73,6 +73,13 @@ public class HighScore3 {
 		return scores;
 	}
 	
+	/**
+	 * Extract the data from the read lines and convert then into 
+	 * BestPlayer object.
+	 * 
+	 * @param readLines The csv lines read from the server.
+	 * @return Array of BestPlayer corresponding to each csv lines.
+	 */
 	public BestPlayer3[] tenBestScores(List<String> readLines) {
 		List<BestPlayer3> bestPlayers = new ArrayList<>();
 		
@@ -87,16 +94,22 @@ public class HighScore3 {
 		}
 		
 		Collections.sort(bestPlayers, Collections.reverseOrder());
-		return bestPlayers.toArray(new BestPlayer3[10]);
+		return bestPlayers.subList(0, 10).toArray(new BestPlayer3[10]);
 	}
 	
+	/**
+	 * Send a a new highscore to the server. 
+	 * 
+	 * @param player Player with his highscore to send to the server.
+	 * @throws IOException  An error can occur during the communication with the server.
+	 */
 	public void sendScore(BestPlayer3 player) throws IOException{
 		String nom = player.getName();
 		int score = player.getScore();
 		
-		URL getURL = new URL("https://api.thingspeak.com/update?api_key=3KIYU8HBCBTTFKP2&field1="+score+"&field2="+nom);
+		// See thinkspeak API
+		URL getURL = new URL("https://api.thingspeak.com/update?api_key=3KIYU8HBCBTTFKP2&field1=" + score + "&field2=" + nom);
 		getURL.openStream();
-
 	}
 
 }

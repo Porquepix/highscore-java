@@ -33,11 +33,22 @@ public class TestHighScore1 {
 		stdin.close();
 		
 		// Read scores from the scoreSamples.txt
+		int score = getRandomScoreFromFile();
+		// Display player's name and score
+		System.out.println("Username: " + username + ", Score: " + score);
+	}
+
+	/**
+	 * Pick up a random score in the list of score in the file 'scoreSamples'.
+	 * 
+	 * @return Random score.
+	 * @throws IOException Error if we have an IO issue with the file.
+	 */
+	private static int getRandomScoreFromFile() throws IOException {
 		Path scoreFile = Paths.get("scoreSamples.txt");
 		List<String> scores = Files.readAllLines(scoreFile);
 		int playerScoreIndex = new Random().nextInt(scores.size());
-		// Display player's name and score
-		System.out.println("Username: " + username + ", Score: " + scores.get(playerScoreIndex));
+		return Integer.parseInt(scores.get(playerScoreIndex));
 	}
 	
 }

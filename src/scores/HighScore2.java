@@ -73,6 +73,13 @@ public class HighScore2 {
 		return scores;
 	}
 	
+	/**
+	 * Extract the data from the read lines and convert then into 
+	 * BestPlayer object.
+	 * 
+	 * @param readLines The csv lines read from the server.
+	 * @return Array of BestPlayer corresponding to each csv lines.
+	 */
 	public BestPlayer2[] tenBestScores(List<String> readLines) {
 		List<BestPlayer2> bestPlayers = new ArrayList<>();
 		
@@ -87,7 +94,7 @@ public class HighScore2 {
 		}
 		
 		Collections.sort(bestPlayers, Collections.reverseOrder());
-		return bestPlayers.toArray(new BestPlayer2[10]);
+		return bestPlayers.subList(0, 10).toArray(new BestPlayer2[10]);
 	}
 
 }
